@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Blogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -58,7 +60,7 @@ function Blogs() {
         
           {blog.image ? (
             <img
-              src={`http://127.0.0.1:8000/storage/${blog.image}`}
+              src={`${API_URL}/storage/${blog.image}`}
               alt={blog.name}
               className="w-full rounded-xl shadow-lg"
             />

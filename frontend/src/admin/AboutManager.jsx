@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function AboutManager() {
 
   const [abouts, setAbouts] = useState([]);
@@ -350,7 +352,7 @@ className="p-2 border rounded w-80"
 Current Image:
 
 <a
-href={`http://127.0.0.1:8000/storage/${
+href={`${API_URL}/storage/${
 abouts.find(a => a.id === editingId).image
 }`}
 target="_blank"
@@ -429,7 +431,7 @@ className="p-2 border rounded w-80"
 Current CV:
 
 <a
-href={`http://127.0.0.1:8000/storage/${
+href={`${API_URL}/storage/${
 abouts.find(a => a.id === editingId).cv_file
 }`}
 target="_blank"
@@ -539,7 +541,7 @@ className="bg-white shadow rounded-lg p-5 border"
 
 <img
 
-src={`http://127.0.0.1:8000/storage/${about.image}`}
+src={`${API_URL}/storage/${about.image}`}
 
 className="w-40 h-40 object-cover rounded mb-4"
 
@@ -588,7 +590,7 @@ className="w-40 h-40 object-cover rounded mb-4"
     <strong>Current CV:</strong>{" "}
 
     <a
-      href={`http://127.0.0.1:8000/storage/${about.cv_file}`}
+      href={`${API_URL}/storage/${about.cv_file}`}
       target="_blank"
       rel="noopener noreferrer"
       className="text-blue-600 underline"

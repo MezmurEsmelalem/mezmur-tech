@@ -4,8 +4,10 @@ import { MdWavingHand } from "react-icons/md";
 import Typewriter from "../components/Typewriter";
 import { FaLinkedin } from "react-icons/fa";
 
+const API_URL = import.meta.env.VITE_API_URL;
 
 function About() {
+  
   const [about, setAbout] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -136,7 +138,7 @@ function About() {
   <div>
           {about.image ? (
             <img
-              src={`http://127.0.0.1:8000/storage/${about.image}`}
+              src={`${API_URL}/storage/${about.image}`}
               alt={about.title}
               className="w-72 h-72 object-cover rounded-full border-4 border-orange-400 shadow-xl transition duration-300 hover:scale-105"              
             />
@@ -214,7 +216,7 @@ function About() {
 
       <div className="flex gap-3">
         <a
-          href={`http://127.0.0.1:8000/storage/${about.cv_file}`}
+          href={`${API_URL}/storage/${about.cv_file}`}
           target="_blank"
           rel="noopener noreferrer"
           className="bg-white hover:bg-gray-300 text-blue-600 px-5 py-2 rounded-lg font-semibold"
@@ -223,7 +225,7 @@ function About() {
         </a>
 
         <a
-          href={`http://127.0.0.1:8000/api/download-cv/${about.id}`}
+          href={`${API_URL}/api/download-cv/${about.id}`}
           className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-semibold"
         >
           Download
