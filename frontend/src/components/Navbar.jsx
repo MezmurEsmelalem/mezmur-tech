@@ -17,8 +17,6 @@ function Navbar() {
            Transforming challenges into innovative solutions
         </h2>
       </div>
-      
-      {/* <ThemeToggle /> */}
 
       {/* Links Row */}
     <div className="w-full bg-orange-400">

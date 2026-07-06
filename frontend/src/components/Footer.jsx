@@ -1,19 +1,16 @@
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaTelegramPlane, FaLinkedin, FaGithub } from "react-icons/fa";
-// import { SiTiktok } from "react-icons/si";
 
 export default function Footer() {
   const aboutLinks = [
     { name: "Privacy Policy", path: "/privacy" },
     { name: "Terms of Service", path: "/terms" },
-    // { name: "Company Info", path: "/company" },
   ];
 
   const supportLinks = [
     { name: "Contact Me", path: "/contact" },
     { name: "FAQ", path: "/faq" },
-    // { name: "Refund", path: "/refunds" },
-    // { name: "Shipping Policy", path: "/shipping" },
+    
   ];
 
   const socialLinks = [
@@ -31,7 +28,7 @@ export default function Footer() {
     <footer className="bg-gray-900 text-gray-300 relative">
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
 
-        {/* About Us Section */}
+        {/* About me Section */}
         <div>
           <h3 className="text-lg font-semibold mb-3 text-white">About Us</h3>
           <ul className="space-y-2 text-sm">
@@ -55,7 +52,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Our Socials Section */}
+        {/* My Socials Section */}
         <div>
           <h3 className="text-lg font-semibold mb-3 text-white">My Socials</h3>
           <ul className="flex gap-4 items-center text-xl">
