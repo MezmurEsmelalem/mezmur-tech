@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
+    libpq-dev \
     && docker-php-ext-install \
     pdo \
     pdo_pgsql \
@@ -27,6 +28,9 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Clear cached config
 RUN php artisan config:clear
+RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
 
 # Create storage symlink
 RUN php artisan storage:link || true

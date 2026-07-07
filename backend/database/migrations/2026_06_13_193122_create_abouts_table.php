@@ -35,9 +35,6 @@ return new class extends Migration
      */
     public function down()
 {
-    Schema::table('abouts', function ($table) {
-        $table->dropColumn('cv_file');
-        $table->string('cv_url')->nullable();
-    });
+    Schema::dropIfExists('abouts');
 }
 };

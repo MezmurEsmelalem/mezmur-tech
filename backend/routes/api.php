@@ -123,13 +123,3 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/download-cv/{id}', [AboutController::class, 'downloadCv']);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Media Management
-    |--------------------------------------------------------------------------
-    */
-    // Route::get('/media', [MediaController::class, 'index']);
-    // Route::get('/media/{id}', [MediaController::class, 'show']);
-    // Route::post('/media/upload-image', [MediaController::class, 'uploadImage']);
-    // Route::post('/media/upload-video', [MediaController::class, 'uploadVideo']);
-    // Route::delete('/media/{id}', [MediaController::class, 'destroy']);
