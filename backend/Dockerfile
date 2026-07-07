@@ -38,4 +38,4 @@ RUN php artisan storage:link || true
 EXPOSE 8000
 
 # Render provides PORT automatically
-CMD php artisan serve --host=0.0.0.0 --port=$PORT
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
