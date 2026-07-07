@@ -2,10 +2,24 @@ import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 //import ThemeToggle from "./ThemeToggle";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+ const navigate = useNavigate();
+
+const {user, loading, logout} = useAuth();
+
+  const handleLogout = async () => {
+
+    await logout();
+
+    navigate("/admin/login");
+
+};
+
   return (
 <nav className="bg-white shadow">
 
@@ -70,12 +84,41 @@ function Navbar() {
 
     <Link to="/blogs" className="hover:text-blue-600">Blogs</Link>
 
-    <Link
-      to="/admin/login"
-      className="ml-auto bg-blue-600 px-3 py-1 rounded hover:bg-white hover:text-blue-600"
-    >
-      Login
-    </Link>
+    {!loading && (
+      user ? (
+        <div className="ml-auto flex items-center gap-4">
+          
+          <Link
+            to="/admin/dashboard"
+            className="flex items-center gap-3 hover:opacity-80 transition">             
+            
+
+          <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
+            {user.name.charAt(0).toUpperCase()}
+          </div>
+
+          <span className="font-semibold text-white">
+            {user.name}
+          </span>
+          </Link>
+
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 px-3 py-2 rounded-lg hover:bg-red-700"
+          >
+            Logout
+          </button>
+
+        </div>
+      ) : (
+        <Link
+          to="/admin/login"
+          className="ml-auto bg-blue-600 px-4 py-2 rounded-lg hover:bg-white hover:text-blue-600"
+        >
+          Login
+        </Link>
+      )
+    )}
 
   </div>
 
@@ -112,13 +155,43 @@ function Navbar() {
         Blogs
       </Link>
 
+      {!loading && (
+      user ? (
+        <div className="flex flex-col gap-4 px-5 py-4">
+
       <Link
-        className="mx-40 my-4 text-center bg-blue-600 hover:bg-white hover:text-blue-600 font-medium rounded py-2"
-        to="/admin/login"
+        to="/admin/dashboard"
         onClick={() => setMenuOpen(false)}
+        className="flex items-center gap-3 hover:bg-orange-500 active:bg-orange-700 px-3 py-2 rounded-lg transition"
       >
-        Login
+
+        <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
+          {user.name.charAt(0).toUpperCase()}
+        </div>
+
+        <span className="font-semibold text-white">
+          {user.name}
+        </span>
+
       </Link>
+
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 mr-64 my-2 py-2 rounded-lg hover:bg-red-700"
+          >
+            Logout
+          </button>
+
+        </div>
+      ) : (
+        <Link
+          to="/admin/login"
+          className="mx-40 my-4 text-center bg-blue-600 hover:bg-white hover:text-blue-600 font-medium rounded py-2"
+        >
+          Login
+        </Link>
+      )
+    )}
 
     </div>
   )}

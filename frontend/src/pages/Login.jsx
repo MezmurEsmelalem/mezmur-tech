@@ -2,12 +2,15 @@ import { useState } from "react";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { useAuth } from "../context/useAuth";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const {login} = useAuth();
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -21,6 +24,7 @@ function Login() {
       });
 
       console.log(response.data);
+      login(response.data.user);
       navigate("/admin/dashboard");
     } catch (error) {
   console.error("Full error:", error);

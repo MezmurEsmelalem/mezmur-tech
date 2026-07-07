@@ -1,44 +1,13 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../api/axios";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 
 function AdminDashboard() {
   console.log("AdminDashboard Loaded");
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
+  const {user,loading}=useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await api.get("/user");
-        setUser(response.data);
-      } catch (error) {
-  console.log("Dashboard Error:", error);
-  console.log("Status:", error?.response?.status);
-  console.log("Data:", error?.response?.data);
-
-  navigate("/admin/login");
-} finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUser();
-  }, [navigate]);
-
-  const handleLogout = async () => {
-    try {
-      await api.post("/logout");
-
-      navigate("/admin/login");
-    } catch (error) {
-      console.error(error);
-      alert("Logout failed");
-    }
-  };
+  
 
   if (loading) {
     return (
@@ -46,6 +15,14 @@ function AdminDashboard() {
       <div className="w-10 h-10 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
+  
+  }
+
+  if(!user){
+
+  navigate("/admin/login");
+
+  return null;
   }
 
   return (
@@ -106,13 +83,6 @@ function AdminDashboard() {
       </Link>
 
       </div>
-
-      <button
-        onClick={handleLogout}
-        className="mt-8 bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded"
-      >
-        Logout
-      </button>
 
     </div>
   );
