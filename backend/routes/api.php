@@ -99,7 +99,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/messages/{id}', [MessageController::class, 'show']);
     Route::put('/messages/{id}', [MessageController::class, 'update']);
     Route::delete('/messages/{id}', [MessageController::class, 'destroy']);
-});
+
+
 
      /*
     |--------------------------------------------------------------------------
@@ -118,6 +119,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/services', [ServiceController::class, 'store']);
     Route::put('/services/{id}', [ServiceController::class, 'update']);
     Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
+
+});
 
 
 
