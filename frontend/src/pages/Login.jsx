@@ -15,13 +15,20 @@ function Login() {
     e.preventDefault();
 
     try {
-      await api.get("/sanctum/csrf-cookie");
-      console.log("CSRF cookie requested");
+      await api.get("/sanctum/csrf-cookie", {
+  withCredentials: true,
+});
 
-      const response = await api.post("/login", {
-        email,
-        password,
-      });
+const response = await api.post(
+  "/login",
+  {
+    email,
+    password,
+  },
+  {
+    withCredentials: true,
+  }
+);
 
       console.log(response.data);
       login(response.data.user);
