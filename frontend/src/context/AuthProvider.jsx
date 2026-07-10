@@ -15,7 +15,7 @@ export function AuthProvider({ children }) {
 
             try {
 
-                const response = await api.get("/user");
+                const response = await api.get("/api/user");
 
                 setUser(response.data);
 
@@ -47,7 +47,7 @@ export function AuthProvider({ children }) {
 
         try {
 
-            await api.post("/logout");
+            await api.post("/api/logout");
 
             setUser(null);
 
