@@ -22,6 +22,7 @@ Route::get('/test', function () {
     ]);
 });
 
+Route::post('/login', [AuthController::class, 'login']);
 
 // Projects (Public Read)
 Route::get('/projects', [ProjectController::class, 'index']);
