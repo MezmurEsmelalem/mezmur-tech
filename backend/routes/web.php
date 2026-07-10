@@ -7,9 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Authentication
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout']);
+// // Authentication
+// Route::post('/login', [AuthController::class, 'login']);
+// Route::post('/logout', [AuthController::class, 'logout']);
 
-// Protected user route
-Route::middleware('auth')->get('/user', [AuthController::class, 'user']);
+// // Protected user route
+// Route::middleware('auth')->get('/user', [AuthController::class, 'user']);

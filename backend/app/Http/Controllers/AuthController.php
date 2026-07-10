@@ -21,26 +21,25 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $request->session()->regenerate();
+        $user = Auth::user();
+        $token = $user->createToken('admin-token')->plainTextToken;
 
-        return response()->json([
-            'message' => 'Logged in successfully',
-            'user' => Auth::user()
-        ]);
+       return response()->json([
+        'message' => 'Logged in successfully',
+        'user' => $user,
+        'token' => $token
+    ]);
     }
 
     // LOGOUT
-    public function logout(Request $request)
-    {
-        Auth::logout();
+   public function logout(Request $request)
+{
+    $request->user()->tokens()->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return response()->json([
-            'message' => 'Logged out successfully'
-        ]);
-    }
+    return response()->json([
+        'message' => 'Logged out successfully'
+    ]);
+}
 
     // GET AUTH USER
     public function user(Request $request)

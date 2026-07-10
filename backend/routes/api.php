@@ -8,7 +8,6 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +22,6 @@ Route::get('/test', function () {
     ]);
 });
 
-// Authentication
-
-// Route::post('/login', [AuthController::class, 'login']);
-// Route::get('/user', [AuthController::class, 'user']);
-// Route::post('/logout', [AuthController::class, 'logout']);
 
 // Projects (Public Read)
 Route::get('/projects', [ProjectController::class, 'index']);
@@ -57,6 +51,10 @@ Route::get('/services/{id}', [ServiceController::class, 'show']);
 */
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    // Authentication
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user', [AuthController::class, 'user']);
 
 
     /*
