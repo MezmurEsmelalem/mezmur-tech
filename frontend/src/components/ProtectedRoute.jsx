@@ -9,7 +9,7 @@ function ProtectedRoute({ children }) {
   useEffect(() => {
     const checkUser = async () => {
       try {
-        const response = await api.get("/user");
+        const response = await api.get("/api/user");
 
         console.log("USER:", response.data);
 
