@@ -16,11 +16,21 @@ function Login() {
 
     try {
       await api.get("/sanctum/csrf-cookie");
+      console.log(document.cookie);
       console.log("CSRF cookie requested");
 
       const response = await api.post("/login", {
         email,
         password,
+        
+  headers: {
+    "X-XSRF-TOKEN": decodeURIComponent(
+      document.cookie
+        .split("; ")
+        .find(c => c.startsWith("XSRF-TOKEN="))
+        ?.split("=")[1] || ""
+    ),
+  },
       });
 
       console.log(response.data);
