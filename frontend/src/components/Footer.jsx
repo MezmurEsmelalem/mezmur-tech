@@ -30,7 +30,7 @@ export default function Footer() {
 
         {/* About me Section */}
         <div>
-          <h3 className="text-lg font-semibold mb-3 text-white">About Us</h3>
+          <h3 className="text-lg font-semibold mb-3 text-white">About Me</h3>
           <ul className="space-y-2 text-sm">
             {aboutLinks.map(link => (
               <li key={link.name}>
