@@ -8,13 +8,7 @@ use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
-    protected $storage;
 
-
-    public function __construct(SupabaseStorageService $storage)
-    {
-        $this->storage = $storage;
-    }
 
 
 
