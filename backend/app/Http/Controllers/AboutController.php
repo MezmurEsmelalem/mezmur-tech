@@ -10,25 +10,11 @@ class AboutController extends Controller
 {
 
 
-
-
     // GET /api/abouts
     public function index()
-{
-    try {
-
+    {
         return response()->json(About::all());
-
-    } catch (\Throwable $e) {
-
-        return response()->json([
-            'error' => $e->getMessage(),
-            'file' => $e->getFile(),
-            'line' => $e->getLine()
-        ], 500);
-
     }
-}
 
 
 
@@ -47,11 +33,14 @@ class AboutController extends Controller
         ]);
 
 
+        $storage = new SupabaseStorageService();
+
+
 
         if ($request->hasFile('image')) {
 
             $validated['image'] =
-                $this->storage->uploadImage(
+                $storage->uploadImage(
                     $request->file('image'),
                     'abouts'
                 );
@@ -62,7 +51,7 @@ class AboutController extends Controller
         if ($request->hasFile('cv_file')) {
 
             $validated['cv_file'] =
-                $this->storage->uploadDocument(
+                $storage->uploadDocument(
                     $request->file('cv_file'),
                     'cvs'
                 );
@@ -79,6 +68,7 @@ class AboutController extends Controller
             'data' => $about
         ], 201);
     }
+
 
 
 
@@ -117,11 +107,13 @@ class AboutController extends Controller
 
 
 
-
     // PUT /api/abouts/{id}
     public function update(Request $request, $id)
     {
+
         $about = About::findOrFail($id);
+
+        $storage = new SupabaseStorageService();
 
 
 
@@ -139,23 +131,21 @@ class AboutController extends Controller
 
 
 
-
-        // Replace image
-
         if ($request->hasFile('image')) {
 
 
             if ($about->image) {
 
-                $this->storage->deleteImage(
+                $storage->deleteImage(
                     $about->image
                 );
 
             }
 
 
+
             $validated['image'] =
-                $this->storage->uploadImage(
+                $storage->uploadImage(
                     $request->file('image'),
                     'abouts'
                 );
@@ -166,14 +156,12 @@ class AboutController extends Controller
 
 
 
-        // Replace CV
-
         if ($request->hasFile('cv_file')) {
 
 
             if ($about->cv_file) {
 
-                $this->storage->deleteDocument(
+                $storage->deleteDocument(
                     $about->cv_file
                 );
 
@@ -182,14 +170,12 @@ class AboutController extends Controller
 
 
             $validated['cv_file'] =
-                $this->storage->uploadDocument(
+                $storage->uploadDocument(
                     $request->file('cv_file'),
                     'cvs'
                 );
 
         }
-
-
 
 
 
@@ -207,18 +193,19 @@ class AboutController extends Controller
 
 
 
-
-
     // DELETE /api/abouts/{id}
     public function destroy($id)
     {
+
         $about = About::findOrFail($id);
+
+        $storage = new SupabaseStorageService();
 
 
 
         if ($about->image) {
 
-            $this->storage->deleteImage(
+            $storage->deleteImage(
                 $about->image
             );
 
@@ -228,7 +215,7 @@ class AboutController extends Controller
 
         if ($about->cv_file) {
 
-            $this->storage->deleteDocument(
+            $storage->deleteDocument(
                 $about->cv_file
             );
 
@@ -244,4 +231,5 @@ class AboutController extends Controller
             'message' => 'About information deleted successfully'
         ]);
     }
+
 }
