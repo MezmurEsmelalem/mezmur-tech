@@ -20,9 +20,21 @@ class AboutController extends Controller
 
     // GET /api/abouts
     public function index()
-    {
+{
+    try {
+
         return response()->json(About::all());
+
+    } catch (\Throwable $e) {
+
+        return response()->json([
+            'error' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine()
+        ], 500);
+
     }
+}
 
 
 
