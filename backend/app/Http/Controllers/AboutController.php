@@ -3,16 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Services\SupabaseStorageService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class AboutController extends Controller
 {
+    protected $storage;
+
+
+    public function __construct(SupabaseStorageService $storage)
+    {
+        $this->storage = $storage;
+    }
+
+
+
     // GET /api/abouts
     public function index()
     {
         return response()->json(About::all());
     }
+
+
 
     // POST /api/abouts
     public function store(Request $request)
@@ -28,17 +40,33 @@ class AboutController extends Controller
             'cv_file' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png,webp|max:10240',
         ]);
 
+
+
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('abouts', 'public');
-            $validated['image'] = $path;
+
+            $validated['image'] =
+                $this->storage->uploadImage(
+                    $request->file('image'),
+                    'abouts'
+                );
         }
+
+
 
         if ($request->hasFile('cv_file')) {
+
             $validated['cv_file'] =
-                $request->file('cv_file')->store('cvs', 'public');
+                $this->storage->uploadDocument(
+                    $request->file('cv_file'),
+                    'cvs'
+                );
         }
 
+
+
         $about = About::create($validated);
+
+
 
         return response()->json([
             'message' => 'About information created successfully',
@@ -46,32 +74,50 @@ class AboutController extends Controller
         ], 201);
     }
 
+
+
+
     // GET /api/abouts/{id}
     public function show($id)
     {
-        $about = About::findOrFail($id);
-
-        return response()->json($about);
+        return response()->json(
+            About::findOrFail($id)
+        );
     }
 
 
+
+
+
+    // Download CV
     public function downloadCv($id)
-        {
-            $about = About::findOrFail($id);
+    {
+        $about = About::findOrFail($id);
 
-            if (!$about->cv_file) {
-                return response()->json([
-                    'message' => 'CV not found.'
-                ], 404);
-            }
 
-            return Storage::disk('public')->download($about->cv_file);
+        if (!$about->cv_file) {
+
+            return response()->json([
+                'message' => 'CV not found.'
+            ], 404);
+
         }
+
+
+        return redirect($about->cv_file);
+    }
+
+
+
+
+
 
     // PUT /api/abouts/{id}
     public function update(Request $request, $id)
     {
         $about = About::findOrFail($id);
+
+
 
         $validated = $request->validate([
             'title' => 'sometimes|required|string|max:255',
@@ -84,39 +130,66 @@ class AboutController extends Controller
             'cv_file' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png,webp|max:10240',
         ]);
 
+
+
+
+
+        // Replace image
+
         if ($request->hasFile('image')) {
 
-            // Delete old image
-            if ($about->image) {
-                $oldPath = ltrim(str_replace('/storage/', '', $about->image), '/');
 
-                if (Storage::disk('public')->exists($oldPath)) {
-                    Storage::disk('public')->delete($oldPath);
-                }
+            if ($about->image) {
+
+                $this->storage->deleteImage(
+                    $about->image
+                );
+
             }
 
-            $path = $request->file('image')->store('abouts', 'public');
-            $validated['image'] = $path;
+
+            $validated['image'] =
+                $this->storage->uploadImage(
+                    $request->file('image'),
+                    'abouts'
+                );
+
         }
+
+
+
+
 
         // Replace CV
+
         if ($request->hasFile('cv_file')) {
 
-            // Delete old CV
+
             if ($about->cv_file) {
 
-                $oldCV = ltrim(str_replace('/storage/', '', $about->cv_file), '/');
+                $this->storage->deleteDocument(
+                    $about->cv_file
+                );
 
-                if (Storage::disk('public')->exists($oldCV)) {
-                    Storage::disk('public')->delete($oldCV);
-                }
             }
 
+
+
             $validated['cv_file'] =
-                $request->file('cv_file')->store('cvs', 'public');
+                $this->storage->uploadDocument(
+                    $request->file('cv_file'),
+                    'cvs'
+                );
+
         }
 
+
+
+
+
         $about->update($validated);
+
+
 
         return response()->json([
             'message' => 'About information updated successfully',
@@ -124,31 +197,42 @@ class AboutController extends Controller
         ]);
     }
 
+
+
+
+
+
+
     // DELETE /api/abouts/{id}
     public function destroy($id)
     {
         $about = About::findOrFail($id);
 
-        // Delete image from storage
-        if ($about->image) {
-            $oldPath = str_replace('/storage/', '', $about->image);
 
-            if (Storage::disk('public')->exists($oldPath)) {
-                Storage::disk('public')->delete($oldPath);
-            }
+
+        if ($about->image) {
+
+            $this->storage->deleteImage(
+                $about->image
+            );
+
         }
 
-        // Delete CV
+
+
         if ($about->cv_file) {
 
-            $oldCV = ltrim(str_replace('/storage/', '', $about->cv_file), '/');
+            $this->storage->deleteDocument(
+                $about->cv_file
+            );
 
-            if (Storage::disk('public')->exists($oldCV)) {
-                Storage::disk('public')->delete($oldCV);
-            }
         }
 
+
+
         $about->delete();
+
+
 
         return response()->json([
             'message' => 'About information deleted successfully'

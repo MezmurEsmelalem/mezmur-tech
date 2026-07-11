@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 
-const API_URL = import.meta.env.VITE_API_URL;
+//const API_URL = import.meta.env.VITE_API_URL;
 
 function AboutManager() {
 
@@ -352,18 +352,14 @@ className="p-2 border rounded w-80"
 Current Image:
 
 <a
-href={`${API_URL}/storage/${
-abouts.find(a => a.id === editingId).image
-}`}
+href={abouts.find(a => a.id === editingId).image}
 target="_blank"
 rel="noopener noreferrer"
 className="text-blue-600 underline ml-2"
 >
-
 {
 abouts.find(a => a.id === editingId).image.split("/").pop()
 }
-
 </a>
 
 </p>
@@ -431,18 +427,14 @@ className="p-2 border rounded w-80"
 Current CV:
 
 <a
-href={`${API_URL}/storage/${
-abouts.find(a => a.id === editingId).cv_file
-}`}
+href={abouts.find(a => a.id === editingId).cv_file}
 target="_blank"
 rel="noopener noreferrer"
 className="text-blue-600 underline ml-2"
 >
-
 {
 abouts.find(a => a.id === editingId).cv_file.split("/").pop()
 }
-
 </a>
 
 </p>
@@ -541,7 +533,7 @@ className="bg-white shadow rounded-lg p-5 border"
 
 <img
 
-src={`${API_URL}/storage/${about.image}`}
+src={about.image}
 
 className="w-40 h-40 object-cover rounded mb-4"
 
@@ -590,13 +582,13 @@ className="w-40 h-40 object-cover rounded mb-4"
     <strong>Current CV:</strong>{" "}
 
     <a
-      href={`${API_URL}/storage/${about.cv_file}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-blue-600 underline"
-    >
-      View File
-    </a>
+href={about.cv_file}
+target="_blank"
+rel="noopener noreferrer"
+className="text-blue-600 underline"
+>
+View File
+</a>
   </p>
 )}
 </div>
