@@ -225,7 +225,7 @@ function About() {
         </a>
 
         <a
-          href={about.id}
+          href={about.cv_file}
           className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-semibold"
         >
           Download
