@@ -14,10 +14,26 @@ class AboutController extends Controller
     {
         $this->storage = $storage;
     }
-    // GET /api/abouts
-    public function index()
+   // GET /api/abouts
+public function index()
 {
-    return response()->json(About::all());
+    try {
+
+        $abouts = About::all();
+
+        return response()->json([
+            "status" => "Database connected",
+            "data" => $abouts
+        ]);
+
+    } catch (\Exception $e) {
+
+        return response()->json([
+            "status" => "Database failed",
+            "error" => $e->getMessage()
+        ], 500);
+
+    }
 }
 
     // POST /api/abouts
