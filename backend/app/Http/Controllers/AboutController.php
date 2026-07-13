@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use Illuminate\Http\Request;
-use App\Services\SupabaseStorageService;
+// use App\Services\SupabaseStorageService;
 
 class AboutController extends Controller
 {
-    protected $storage;
+    // protected $storage;
 
-    public function __construct(SupabaseStorageService $storage)
-    {
-        $this->storage = $storage;
-    }
+    // public function __construct(SupabaseStorageService $storage)
+    // {
+    //     $this->storage = $storage;
+    // }
    // GET /api/abouts
 public function index()
 {
