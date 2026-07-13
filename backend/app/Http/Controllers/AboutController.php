@@ -16,11 +16,9 @@ class AboutController extends Controller
     }
     // GET /api/abouts
     public function index()
-    {
-        $about = About::first();
-
-        return response()->json($about);
-    }
+{
+    return response()->json(About::all());
+}
 
     // POST /api/abouts
     public function store(Request $request)
