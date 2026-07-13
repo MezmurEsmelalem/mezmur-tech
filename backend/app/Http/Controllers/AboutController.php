@@ -17,23 +17,9 @@ class AboutController extends Controller
    // GET /api/abouts
 public function index()
 {
-    try {
-
-        $abouts = About::all();
-
-        return response()->json([
-            "status" => "Database connected",
-            "data" => $abouts
-        ]);
-
-    } catch (\Exception $e) {
-
-        return response()->json([
-            "status" => "Database failed",
-            "error" => $e->getMessage()
-        ], 500);
-
-    }
+    return response()->json(
+        About::all()
+    );
 }
 
     // POST /api/abouts
