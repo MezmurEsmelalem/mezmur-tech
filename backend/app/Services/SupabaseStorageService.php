@@ -58,10 +58,13 @@ class SupabaseStorageService
      * Get public image URL
      */
     public function getImageUrl($path)
-    {
-        return Storage::disk('supabase_images')
-            ->url($path);
-    }
+        {
+            return rtrim(env('SUPABASE_URL'), '/')
+                . '/storage/v1/object/public/'
+                . env('SUPABASE_BUCKET_IMAGES')
+                . '/'
+                . ltrim($path, '/');
+        }
 
 
 
@@ -69,10 +72,13 @@ class SupabaseStorageService
      * Get public document URL
      */
     public function getDocumentUrl($path)
-    {
-        return Storage::disk('supabase_documents')
-            ->url($path);
-    }
+        {
+            return rtrim(env('SUPABASE_URL'), '/')
+                . '/storage/v1/object/public/'
+                . env('SUPABASE_BUCKET_DOCUMENTS')
+                . '/'
+                . ltrim($path, '/');
+        }
 
 
 
