@@ -22,8 +22,7 @@ class SupabaseStorageService
 
         Storage::disk('supabase_images')->put(
             $path,
-            file_get_contents($file),
-            'public'
+            file_get_contents($file)
         );
 
 
@@ -46,8 +45,7 @@ class SupabaseStorageService
 
         Storage::disk('supabase_documents')->put(
             $path,
-            file_get_contents($file),
-            'public'
+            file_get_contents($file)
         );
 
 
@@ -159,10 +157,10 @@ class SupabaseStorageService
 
 
         // remove bucket name from path
-        $storagePath = explode('/', $parts[1], 2);
+        // Remove bucket name
+    $segments = explode('/', $parts[1], 2);
 
-
-        return $storagePath[1] ?? null;
+    return $segments[1] ?? null;
     }
 
 }
