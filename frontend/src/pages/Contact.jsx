@@ -80,7 +80,7 @@ function Contact() {
             value={formData.name}
             onChange={handleChange}
             required
-            placeholder="eg. John"
+            placeholder="eg. Mezmur"
             className="w-full border rounded p-3"
           />
         </div>
@@ -96,7 +96,7 @@ function Contact() {
             value={formData.email}
             onChange={handleChange}
             required
-            placeholder="eg. John@example.com"
+            placeholder="eg. Mezmur@example.com"
             className="w-full border rounded p-3"
           />
         </div>
