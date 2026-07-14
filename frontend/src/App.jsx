@@ -31,7 +31,7 @@ function App() {
 
     
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-gradient-to-r from-blue-600 to-purple-600">
+      <div className="min-h-screen flex flex-col bg-[#062b32]">
         <Navbar />
         <ScrollToBottom />
         <main className="flex-grow">
