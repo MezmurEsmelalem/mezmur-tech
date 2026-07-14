@@ -31,7 +31,7 @@ function App() {
 
     
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-[#062b32]">
+      <div className="min-h-screen flex flex-col bg-[#062b32] overflow-hidden">
         <Navbar />
         <ScrollToBottom />
         <main className="flex-grow">
