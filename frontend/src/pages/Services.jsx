@@ -30,8 +30,35 @@ function Services() {
 
   if (loading) {
     return (
-    <div className="flex justify-center items-center py-20">
-      <div className="w-10 h-10 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+    <div className="max-w-7xl mx-auto p-1">
+      <h1 className="text-gray-200 text-3xl font-bold mb-6 mt-6 text-center">
+        My Services
+      </h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[...Array(6)].map((_, index) => (
+          <div
+            key={index}
+            className="bg-amber-200 rounded-xl shadow-sm p-5 animate-pulse"
+          >
+            {/* Icon */}
+            <div className="w-14 h-14 bg-amber-300 rounded-lg mb-4"></div>
+
+            {/* Title */}
+            <div className="h-6 bg-amber-300 rounded w-3/4 mb-4"></div>
+
+            {/* Description */}
+            <div className="space-y-2 mb-4">
+              <div className="h-4 bg-amber-300 rounded w-full"></div>
+              <div className="h-4 bg-amber-300 rounded w-full"></div>
+              <div className="h-4 bg-amber-300 rounded w-5/6"></div>
+            </div>
+
+            {/* Price */}
+            <div className="h-5 bg-amber-300 rounded w-1/3"></div>
+          </div>
+        ))}
+      </div>
     </div>
   );
   }

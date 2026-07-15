@@ -46,7 +46,7 @@ function Project() {
       </h1>
 
       {projects.length === 0 ? (
-        <p className="text-center text-gray-500">
+        <p className="text-center text-gray-300">
           No projects found
         </p>
       ) : (
