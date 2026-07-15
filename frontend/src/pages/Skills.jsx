@@ -33,20 +33,20 @@ function Skills() {
         {[...Array(6)].map((_, index) => (
           <div
             key={index}
-            className="bg-red-200 rounded-xl shadow-md p-5 animate-pulse"
+            className="bg-gray-300 rounded-xl shadow-sm p-5 animate-pulse"
           >
             {/* Skill Name */}
-            <div className="h-7 bg-red-300 rounded w-2/3 mb-3"></div>
+            <div className="h-7 bg-white/30 rounded w-2/3 mb-3"></div>
 
             {/* Skill Type */}
-            <div className="h-4 bg-red-300 rounded w-1/3 mb-5"></div>
+            <div className="h-4 bg-white/30 rounded w-1/3 mb-5"></div>
 
             {/* Description Lines */}
             <div className="space-y-3">
               {[...Array(4)].map((_, i) => (
                 <div key={i} className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-red-300"></div>
-                  <div className="h-4 bg-red-300 rounded flex-1"></div>
+                  <div className="w-4 h-4 rounded-full bg-white/30"></div>
+                  <div className="h-4 bg-white/30 rounded flex-1"></div>
                 </div>
               ))}
             </div>
