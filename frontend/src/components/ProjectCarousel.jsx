@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 export default function ProjectCarousel({ images }) {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -33,7 +31,7 @@ if (!images || images.length <= 1 || paused) return;
       onMouseLeave={() => setPaused(false)}
     >
       <img
-        src={`${API_URL}/storage/${images[current]}`}
+        src={images[current]}
         alt="Project"
         className="w-full h-[540px] object-cover transition-all duration-700"
       />

@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Services\SupabaseStorageService;
 
 class ProjectController extends Controller
 {
+    // using supabase storage
+    protected $storage;
+
+    public function __construct(SupabaseStorageService $storage)
+    {
+        $this->storage = $storage;
+    }
     // GET /api/projects
     public function index()
     {
@@ -30,13 +37,13 @@ class ProjectController extends Controller
 
         $imagePaths = [];
 
-        if ($request->hasFile('images')) {
+        if ($request->hasFile('image')) {
 
-            foreach ($request->file('images') as $image) {
-                $imagePaths[] = $image->store('projects', 'public');
-            }
-
-            $validated['images'] = $imagePaths;
+            $validated['image'] =
+                $this->storage->uploadImage(
+                    $request->file('image'),
+                    'projects'
+                );
         }
 
         $project = Project::create($validated);
@@ -71,27 +78,22 @@ class ProjectController extends Controller
             'demo_link' => 'nullable|url|max:255',
         ]);
 
-        if ($request->hasFile('images')) {
+        if ($request->hasFile('image')) {
 
-            if ($project->images) {
+            // Delete old image from Supabase
+            if ($project->image) {
 
-                foreach ($project->images as $oldImage) {
-
-                    if (Storage::disk('public')->exists($oldImage)) {
-                        Storage::disk('public')->delete($oldImage);
-                    }
-
-                }
+                $this->storage->deleteImage($project->image);
 
             }
 
-            $imagePaths = [];
 
-            foreach ($request->file('images') as $image) {
-                $imagePaths[] = $image->store('projects', 'public');
-            }
-
-            $validated['images'] = $imagePaths;
+            // Upload new image to Supabase
+            $validated['image'] =
+                $this->storage->uploadImage(
+                    $request->file('image'),
+                    'projects'
+                );
         }
 
         $project->update($validated);
@@ -107,18 +109,14 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        // Delete image from storage
-        if ($project->images) {
 
-            foreach ($project->images as $image) {
+        // Delete image from Supabase
+    if ($project->image) {
 
-                if (Storage::disk('public')->exists($image)) {
-                    Storage::disk('public')->delete($image);
-                }
+        $this->storage->deleteImage($project->image);
 
-            }
-
-        }
+    }
+        // Delete database record
         $project->delete();
 
         return response()->json([
