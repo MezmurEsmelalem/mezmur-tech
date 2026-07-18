@@ -106,7 +106,7 @@ function Project() {
                   <a
                     href={project.demo_link}
                     target="_blank"
-                    className="text-green-500 hover:underline"
+                    className="bg-blue-500 text-gray-100 m-8 p-2 hover:underline"
                   >
                     Live Demo
                   </a>
