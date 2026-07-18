@@ -86,7 +86,7 @@ function Project() {
               </p>
               
                 {/* Image */}
-              <ProjectCarousel images={project.images} className="w-full h-full border-blue-400 object-cover shadow-lg"/>
+              <ProjectCarousel images={project.images}/>
         </div>
 
               <div className="flex gap-3 text-sm">
