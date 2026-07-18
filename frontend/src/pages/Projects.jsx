@@ -27,8 +27,9 @@ function Project() {
   return (
     <div className="max-w-7xl mx-auto p-6 animate-pulse">
       {/* Title */}
-      <div className="h-10 w-64 bg-gray-300 rounded mx-auto mb-10"></div>
-
+      <h1 className="text-gray-200 text-3xl mb-6 mt-6 font-bold text-center">
+        My Projects
+      </h1>
       {/* Project Cards */}
       <div className="space-y-8">
         {[1, 2].map((item) => (
