@@ -28,7 +28,7 @@ export default function ProjectCarousel({ images }) {
       <img
         src={images[current]}
         alt="Project"
-        className="max-w-full max-h-full object-contain transition-all duration-700"
+        className="absolute inset-0 max-w-full max-h-full object-contain transition-all duration-700"
       />
 
       {/* Dots */}
