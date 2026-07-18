@@ -24,12 +24,58 @@ function Project() {
   }, []);
 
   if (loading) {
-    return (
-    <div className="flex justify-center items-center py-20">
-      <div className="w-10 h-10 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+  return (
+    <div className="max-w-7xl mx-auto p-6 animate-pulse">
+      {/* Title */}
+      <div className="h-10 w-64 bg-gray-300 rounded mx-auto mb-10"></div>
+
+      {/* Project Cards */}
+      <div className="space-y-8">
+        {[1, 2].map((item) => (
+          <div
+            key={item}
+            className="border border-gray-300 rounded-md p-4 bg-gray-200 shadow"
+          >
+            {/* Project Info */}
+            <div className="space-y-4 mb-6">
+              <div className="flex items-center gap-3">
+                <div className="h-5 w-28 bg-white/40 rounded"></div>
+                <div className="h-6 w-48 bg-white/50 rounded"></div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="h-5 w-20 bg-white/40 rounded"></div>
+                <div className="h-6 w-40 bg-white/50 rounded"></div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="h-5 w-24 bg-white/40 rounded"></div>
+                <div className="h-6 w-32 bg-white/50 rounded"></div>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className="bg-white/30 border border-gray-300 rounded p-4 mb-6 space-y-3">
+              <div className="h-4 bg-white/50 rounded w-full"></div>
+              <div className="h-4 bg-white/50 rounded w-11/12"></div>
+              <div className="h-4 bg-white/50 rounded w-10/12"></div>
+              <div className="h-4 bg-white/50 rounded w-9/12"></div>
+            </div>
+
+            {/* Image */}
+            <div className="w-full h-[540px] rounded-lg bg-gray-300 mb-6"></div>
+
+            {/* Buttons */}
+            <div className="flex gap-6">
+              <div className="h-10 w-36 rounded bg-white/40"></div>
+              <div className="h-10 w-36 rounded bg-white/40"></div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
-  }
+}
 
   if (error) {
     return (
@@ -54,7 +100,7 @@ function Project() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="border-blue-400 border rounded-md shadow hover:bg-green-300 hover:-translate-y-2 transition mx-4 p-4 bg-green-200"
+              className="border-blue-400 border rounded-md shadow hover:bg-green-300 p-4 bg-green-200"
             >
              
         <div>
