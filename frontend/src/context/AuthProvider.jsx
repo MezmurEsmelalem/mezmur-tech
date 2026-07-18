@@ -5,37 +5,29 @@ import api from "../api/axios";
 
 export function AuthProvider({ children }) {
 
+
+    const token = localStorage.getItem("token");
+
+    const [loading, setLoading] = useState(!!token);
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
 
+useEffect(() => {
+  if (!token) return;
 
-    useEffect(() => {
+  const checkUser = async () => {
+    try {
+      const response = await api.get("/api/user");
+      setUser(response.data);
+    } catch {
+      localStorage.removeItem("token");
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        const checkUser = async () => {
-
-            try {
-
-                const response = await api.get("/api/user");
-
-                setUser(response.data);
-
-            } catch {
-
-                setUser(null);
-
-            } finally {
-
-                setLoading(false);
-
-            }
-
-        };
-
-
-        checkUser();
-
-    }, []);
-
+  checkUser();
+}, [token]);
 
 
     const login = (userData) => {
