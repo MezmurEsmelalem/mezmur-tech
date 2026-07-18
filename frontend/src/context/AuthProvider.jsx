@@ -45,19 +45,22 @@ export function AuthProvider({ children }) {
 
     const logout = async () => {
 
-        try {
+    try {
 
-            await api.post("/api/logout");
+        await api.post("/api/logout");
 
-            setUser(null);
+    } catch {
 
-        } catch {
+        console.log("Logout error");
 
-            setUser(null);
+    } finally {
 
-        }
+        localStorage.removeItem("token");
+        setUser(null);
 
-    };
+    }
+
+  };
 
 
     return (

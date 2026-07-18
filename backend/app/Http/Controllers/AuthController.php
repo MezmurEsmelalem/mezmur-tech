@@ -22,6 +22,10 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
+
+        // remove old tokens
+        $user->tokens()->delete();
+
         $token = $user->createToken('admin-token')->plainTextToken;
 
        return response()->json([
