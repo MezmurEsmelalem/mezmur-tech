@@ -31,7 +31,7 @@ function Project() {
       </h1>
 
       <div className="space-y-8 animate-pulse">
-        {[...Array(3)].map((_, index) => (
+        {[...Array(2)].map((_, index) => (
           <div
             key={index}
             className="border border-gray-300 rounded-md p-4 bg-gray-300 shadow"
