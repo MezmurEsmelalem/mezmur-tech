@@ -24,11 +24,11 @@ export default function ProjectCarousel({ images }) {
 
   return (
 <div
-      className="relative w-full h-[540px] overflow-hidden rounded-lg">
+      className="relative w-full h-[540px] overflow-hidden rounded-lg bg-gray-900 flex items-center justify-center">
       <img
         src={images[current]}
         alt="Project"
-        className="w-full h-full object-contain transition-all duration-700"
+        className="max-w-full max-h-full object-contain transition-all duration-700"
       />
 
       {/* Dots */}
