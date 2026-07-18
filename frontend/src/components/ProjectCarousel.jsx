@@ -28,7 +28,7 @@ export default function ProjectCarousel({ images }) {
       <img
         src={images[current]}
         alt="Project"
-        className="w-full h-full object-cover transition-all duration-700"
+        className="w-full h-full object-contain transition-all duration-700"
       />
 
       {/* Dots */}
