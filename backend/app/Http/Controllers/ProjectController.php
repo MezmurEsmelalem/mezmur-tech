@@ -35,16 +35,15 @@ class ProjectController extends Controller
             'demo_link' => 'nullable|url|max:255',
         ]);
 
-        $imagePaths = [];
+        $imageUrls = [];
 
-        if ($request->hasFile('image')) {
-
-            $validated['image'] =
-                $this->storage->uploadImage(
-                    $request->file('image'),
-                    'projects'
-                );
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageUrls[] = $this->storage->uploadImage($image, 'projects');
+            }
         }
+
+        $validated['images'] = $imageUrls;
 
         $project = Project::create($validated);
 
@@ -78,26 +77,24 @@ class ProjectController extends Controller
             'demo_link' => 'nullable|url|max:255',
         ]);
 
-        if ($request->hasFile('image')) {
+            if ($request->hasFile('images')) {
 
-            // Delete old image from Supabase
-            if ($project->image) {
-
-                $this->storage->deleteImage($project->image);
-
+            if ($project->images) {
+                foreach ($project->images as $image) {
+                    $this->storage->deleteImage($image);
+                }
             }
 
+            $imageUrls = [];
 
-            // Upload new image to Supabase
-            $validated['image'] =
-                $this->storage->uploadImage(
-                    $request->file('image'),
-                    'projects'
-                );
+            foreach ($request->file('images') as $image) {
+                $imageUrls[] = $this->storage->uploadImage($image, 'projects');
+            }
+
+            $validated['images'] = $imageUrls;
         }
 
         $project->update($validated);
-
         return response()->json([
             'message' => 'Project updated successfully',
             'data' => $project
@@ -111,14 +108,13 @@ class ProjectController extends Controller
 
 
         // Delete image from Supabase
-    if ($project->image) {
+            if ($project->images) {
+            foreach ($project->images as $image) {
+                $this->storage->deleteImage($image);
+            }
+        }
 
-        $this->storage->deleteImage($project->image);
-
-    }
-        // Delete database record
         $project->delete();
-
         return response()->json([
             'message' => 'Project deleted successfully'
         ]);
