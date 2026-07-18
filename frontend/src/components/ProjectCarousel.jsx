@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 
 export default function ProjectCarousel({ images }) {
   const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-if (!images || images.length <= 1 || paused) return;
 
     if (!images || images.length <= 1) return;
 
@@ -14,7 +12,7 @@ if (!images || images.length <= 1 || paused) return;
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [images, paused]);
+  }, [images]);
 
   if (!images || images.length === 0) {
     return (
@@ -26,10 +24,7 @@ if (!images || images.length <= 1 || paused) return;
 
   return (
 <div
-      className="relative w-full overflow-hidden rounded-lg"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+      className="relative w-full overflow-hidden rounded-lg">
       <img
         src={images[current]}
         alt="Project"
