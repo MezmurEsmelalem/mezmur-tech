@@ -25,51 +25,50 @@ function Project() {
 
   if (loading) {
   return (
-    <div className="max-w-7xl mx-auto p-6 animate-pulse">
-      {/* Title */}
+    <div className="max-w-7xl mx-auto p-6">
       <h1 className="text-gray-200 text-3xl mb-6 mt-6 font-bold text-center">
         My Projects
       </h1>
-      {/* Project Cards */}
-      <div className="space-y-8">
-        {[1, 2].map((item) => (
+
+      <div className="space-y-8 animate-pulse">
+        {[...Array(3)].map((_, index) => (
           <div
-            key={item}
-            className="border border-gray-300 rounded-md p-4 bg-gray-200 shadow"
+            key={index}
+            className="border border-gray-300 rounded-md p-4 bg-gray-300 shadow"
           >
-            {/* Project Info */}
-            <div className="space-y-4 mb-6">
-              <div className="flex items-center gap-3">
-                <div className="h-5 w-28 bg-white/40 rounded"></div>
-                <div className="h-6 w-48 bg-white/50 rounded"></div>
-              </div>
+            {/* Project Name */}
+            <div className="flex items-center gap-3 mb-3">
+              <div className="h-5 w-32 bg-white/30 rounded"></div>
+              <div className="h-6 w-52 bg-white/30 rounded"></div>
+            </div>
 
-              <div className="flex items-center gap-3">
-                <div className="h-5 w-20 bg-white/40 rounded"></div>
-                <div className="h-6 w-40 bg-white/50 rounded"></div>
-              </div>
+            {/* Type */}
+            <div className="flex items-center gap-3 mb-3">
+              <div className="h-5 w-20 bg-white/30 rounded"></div>
+              <div className="h-6 w-40 bg-white/30 rounded"></div>
+            </div>
 
-              <div className="flex items-center gap-3">
-                <div className="h-5 w-24 bg-white/40 rounded"></div>
-                <div className="h-6 w-32 bg-white/50 rounded"></div>
-              </div>
+            {/* Status */}
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-5 w-24 bg-white/30 rounded"></div>
+              <div className="h-6 w-32 bg-white/30 rounded"></div>
             </div>
 
             {/* Description */}
-            <div className="bg-white/30 border border-gray-300 rounded p-4 mb-6 space-y-3">
-              <div className="h-4 bg-white/50 rounded w-full"></div>
-              <div className="h-4 bg-white/50 rounded w-11/12"></div>
-              <div className="h-4 bg-white/50 rounded w-10/12"></div>
-              <div className="h-4 bg-white/50 rounded w-9/12"></div>
+            <div className="bg-white/20 border border-white/30 p-4 rounded mb-5 space-y-3">
+              <div className="h-4 bg-white/30 rounded w-full"></div>
+              <div className="h-4 bg-white/30 rounded w-11/12"></div>
+              <div className="h-4 bg-white/30 rounded w-10/12"></div>
+              <div className="h-4 bg-white/30 rounded w-8/12"></div>
             </div>
 
-            {/* Image */}
-            <div className="w-full h-[540px] rounded-lg bg-gray-300 mb-6"></div>
+            {/* Carousel */}
+            <div className="w-full h-[540px] bg-white/30 rounded-lg mb-5"></div>
 
             {/* Buttons */}
             <div className="flex gap-6">
-              <div className="h-10 w-36 rounded bg-white/40"></div>
-              <div className="h-10 w-36 rounded bg-white/40"></div>
+              <div className="h-10 w-36 bg-white/30 rounded"></div>
+              <div className="h-10 w-36 bg-white/30 rounded"></div>
             </div>
           </div>
         ))}
