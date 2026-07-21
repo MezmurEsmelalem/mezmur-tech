@@ -125,7 +125,7 @@ const {user, loading, logout} = useAuth();
   {/* Mobile Menu */}
 
   {menuOpen && (
-    <div className="h-screen md:hidden bg-orange-400 text-white flex flex-col">
+    <div className="fixed top-0 left-0 w-full h-screen bg-orange-400 text-white flex flex-col z-50 md:hidden">
 
       <Link className="px-5 py-3 transition-colors duration-200 hover:bg-orange-500 active:bg-orange-700" to="/" onClick={() => setMenuOpen(false)}>
         Home
