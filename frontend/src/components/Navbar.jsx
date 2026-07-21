@@ -54,15 +54,11 @@ const {user, loading, logout} = useAuth();
     {/* Mobile Menu Button */}
 
     <button
-      className="md:hidden"
-      onClick={() => setMenuOpen(!menuOpen)}
-    >
-      {menuOpen ? (
-        <HiX size={30} />
-      ) : (
-        <HiMenu size={30} />
-      )}
-    </button>
+  className="md:hidden"
+  onClick={() => setMenuOpen(true)}
+>
+  <HiMenu size={30} />
+</button>
 
   </div>
 
@@ -125,7 +121,12 @@ const {user, loading, logout} = useAuth();
   {/* Mobile Menu */}
 
   {menuOpen && (
-    <div className="fixed top-0 left-0 w-full h-screen bg-orange-400 text-white flex flex-col z-50 md:hidden">
+    <div className="fixed inset-0 bg-orange-400 text-white flex flex-col z-[999] md:hidden">
+      <div className="flex justify-end p-4">
+        <button onClick={() => setMenuOpen(false)}>
+          <HiX size={32} />
+        </button>
+      </div>
 
       <Link className="px-5 py-3 transition-colors duration-200 hover:bg-orange-500 active:bg-orange-700" to="/" onClick={() => setMenuOpen(false)}>
         Home
