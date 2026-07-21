@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import BannerCarousel from "../components/BannerCarousel";
+//import BannerCarousel from "../components/BannerCarousel";
 import About from "../pages/About";
 import Skills from "../pages/Skills";
 import Projects from "../pages/Projects";
@@ -13,9 +13,9 @@ function Home() {
      
 
       {/* Hero */}
-      <section id="home" >
+      {/* <section id="home" >
          <BannerCarousel position="top" />
-      </section>
+      </section> */}
 
       <section id="about">
         <About />
