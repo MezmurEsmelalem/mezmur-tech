@@ -1,16 +1,27 @@
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { HiMenu, HiX } from "react-icons/hi";
+import { useState, useEffect } from "react";
+import { HiMenu, HiX, FaHome } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 //import ThemeToggle from "./ThemeToggle";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
- const navigate = useNavigate();
+    useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-const {user, loading, logout} = useAuth();
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menuOpen]);
+  const navigate = useNavigate();
+
+  const {user, loading, logout} = useAuth();
 
   const handleLogout = async () => {
 
@@ -66,7 +77,7 @@ const {user, loading, logout} = useAuth();
 
   <div className="hidden md:flex items-center gap-6 bg-orange-400 px-6 py-3 text-white font-medium">
 
-    <Link to="/" className="hover:text-blue-600">Home</Link>
+    <Link to="/" className="hover:text-blue-600"><FaHome/></Link>
 
     <Link to="/abouts" className="hover:text-blue-600">About Me</Link>
 
@@ -121,7 +132,7 @@ const {user, loading, logout} = useAuth();
   {/* Mobile Menu */}
 
   {menuOpen && (
-    <div className="fixed inset-0 bg-orange-400 text-white flex flex-col z-[999] md:hidden">
+   <div className="fixed inset-0 bg-orange-400 text-white flex flex-col overflow-y-auto z-[999] md:hidden">
       <div className="flex justify-end p-4">
         <button onClick={() => setMenuOpen(false)}>
           <HiX size={32} />
