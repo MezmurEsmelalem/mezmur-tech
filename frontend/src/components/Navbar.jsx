@@ -142,7 +142,7 @@ function Navbar() {
     />
 
     {/* Menu */}
-    <div className="absolute top-0 right-0 h-full w-2/3 max-w-sm bg-[#062b32] text-white flex flex-col overflow-y-auto shadow-2xl duration-300 ease-in-out">
+    <div className="absolute top-0 right-0 h-full w-2/3 max-w-sm bg-[#062b32] text-white flex flex-col overflow-y-auto shadow-2xl transform transition-all duration-500 ease-in-out">
 
       <div className="flex justify-end p-4">
         <button onClick={() => setMenuOpen(false)}>
