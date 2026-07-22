@@ -77,7 +77,7 @@ function Navbar() {
 
   <div className="hidden md:flex items-center gap-6 bg-orange-400 px-6 py-3 text-white font-medium">
 
-    <Link to="/" className="hover:text-blue-600"><FaHome/></Link>
+    <Link to="/" className="hover:text-blue-600"><FaHome /></Link>
 
     <Link to="/abouts" className="hover:text-blue-600">About Me</Link>
 
