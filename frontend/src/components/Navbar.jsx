@@ -179,47 +179,48 @@ function Navbar() {
         Blogs
       </Link>
 
-      {!loading && (
-      user ? (
-        <div className="flex flex-col gap-4 px-5 py-4">
+            {!loading && (
+        user ? (
+          <div className="flex flex-col gap-4 px-5 py-4">
 
-      <Link
-        to="/admin/dashboard"
-        onClick={() => setMenuOpen(false)}
-        className="flex items-center gap-3 hover:bg-orange-500 active:bg-orange-700 px-3 py-2 rounded-lg transition"
-      >
+            <Link
+              to="/admin/dashboard"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-3 hover:bg-orange-500 active:bg-orange-700 px-3 py-2 rounded-lg transition"
+            >
+              <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
+                {user.name.charAt(0).toUpperCase()}
+              </div>
 
-        <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
-          {user.name.charAt(0).toUpperCase()}
-        </div>
+              <span className="font-semibold text-white">
+                {user.name}
+              </span>
+            </Link>
 
-        <span className="font-semibold text-white">
-          {user.name}
-        </span>
+            <button
+              onClick={handleLogout}
+              className="bg-red-600 mx-5 my-2 py-2 rounded-lg hover:bg-red-700"
+            >
+              Logout
+            </button>
 
-      </Link>
-
-          <button
-            onClick={handleLogout}
-            className="bg-red-600 mr-64 my-2 py-2 rounded-lg hover:bg-red-700"
+          </div>
+        ) : (
+          <Link
+            to="/admin/login"
+            onClick={() => setMenuOpen(false)}
+            className="mx-5 my-4 text-center bg-blue-600 hover:bg-white hover:text-blue-600 font-medium rounded py-2"
           >
-            Logout
-          </button>
-
-        </div>
-      ) : (
-        <Link
-          to="/admin/login"
-          className="mx-40 my-4 text-center bg-blue-600 hover:bg-white hover:text-blue-600 font-medium rounded py-2"
-        >
-          Login
-        </Link>
-      )
-    )}
+            Login
+          </Link>
+        )
+      )}
 
     </div>
-    </div>
-  )}
+
+  </div>
+
+)}
 
 </nav>
 );
