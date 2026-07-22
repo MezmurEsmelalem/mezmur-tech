@@ -133,12 +133,23 @@ function Navbar() {
   {/* Mobile Menu */}
 
   {menuOpen && (
-   <div className="fixed inset-0 bg-orange-400 text-white flex flex-col overflow-y-auto z-[999] md:hidden">
+   <div className="fixed inset-0 z-[999] md:hidden">
+
+    {/* Overlay */}
+    <div
+      className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+      onClick={() => setMenuOpen(false)}
+    />
+
+    {/* Menu */}
+    <div className="relative h-full w-1/2 max-w-sm bg-orange-400 text-white flex flex-col overflow-y-auto shadow-2xl">
+
       <div className="flex justify-end p-4">
         <button onClick={() => setMenuOpen(false)}>
           <HiX size={32} />
         </button>
       </div>
+
 
       <Link className="px-5 py-3 transition-colors duration-200 hover:bg-orange-500 active:bg-orange-700" to="/" onClick={() => setMenuOpen(false)}>
         Home
@@ -206,6 +217,7 @@ function Navbar() {
       )
     )}
 
+    </div>
     </div>
   )}
 
