@@ -1,7 +1,8 @@
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { HiMenu, HiX, FaHome } from "react-icons/hi";
+import { HiMenu, HiX} from "react-icons/hi";
+import { FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 //import ThemeToggle from "./ThemeToggle";
