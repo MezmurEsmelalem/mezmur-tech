@@ -129,7 +129,10 @@ function Project() {
               </div>
 
               <div className="text-black bg-white border border-blue-400 p-4 mb-3">
-                <ExpandableText text={project.description} />
+                <ExpandableText 
+                text={project.description}
+                 buttonClassName="text-blue-500"
+                />
               </div>
               
                 {/* Image */}

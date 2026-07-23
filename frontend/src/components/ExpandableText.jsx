@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ExpandableText({ text }) {
+export default function ExpandableText({ text,  buttonClassName = "", }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ export default function ExpandableText({ text }) {
 
       <button
         onClick={() => setExpanded(!expanded)}
-        className="md:hidden mt-2 text-blue-500 hover:underline font-medium"
+        className={`md:hidden mt-2 font-medium hover:underline ${buttonClassName}`}
       >
         {expanded ? "Show Less" : "Show More"}
       </button>

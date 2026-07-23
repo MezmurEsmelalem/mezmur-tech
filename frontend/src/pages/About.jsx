@@ -181,7 +181,10 @@ function About() {
         <div className="mt-8 mr-2 bg-gradient-to-r from-purple-600 to-purple-600 text-white rounded-2xl shadow-xl p-6 transition duration-300 hover:scale-105">
 
           <div className="text-gray-200 mb-6">
-            <ExpandableText text={about.description} />
+            <ExpandableText
+              text={about.description}
+              buttonClassName="text-gray-300"
+            />
           </div>
           {/* <div className="bg-white/20 p-4 rounded-lg"> */}
           {/* <div className="space-y-3 "> */}
