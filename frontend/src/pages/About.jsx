@@ -183,7 +183,7 @@ function About() {
           <div className="text-gray-200 mb-6">
             <ExpandableText
               text={about.description}
-              buttonClassName="text-gray-300"
+              buttonClassName="text-blue-600"
             />
           </div>
           {/* <div className="bg-white/20 p-4 rounded-lg"> */}
