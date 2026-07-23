@@ -33,7 +33,7 @@ function Navbar() {
 };
 
   return (
-<nav className="bg-white shadow">
+<nav className="fixed bg-white shadow">
 
   {/* Top */}
   <div className="flex items-center justify-between px-4 py-3">
