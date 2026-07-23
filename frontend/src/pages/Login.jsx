@@ -46,9 +46,9 @@ function Login() {
   };
 
 return (
-  <div className="flex pb-4 pt-4 justify-center bg-gray-100 dark:bg-gray-900">
+  <div className="flex pb-4 pt-4 justify-center dark:bg-gray-900">
 
-    <div className="rounded p-8 w-full max-w-sm">
+    <div className="bg-gray-300 dark:bg-gray-800 rounded p-8 w-full max-w-sm">
 
       <h1 className="text-2xl font-bold mb-6 text-center dark:text-white">
         Login
