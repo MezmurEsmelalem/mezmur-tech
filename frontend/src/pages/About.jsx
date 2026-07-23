@@ -178,7 +178,7 @@ function About() {
           <h2 className="text-2xl font-bold mb-4">
             About Me
           </h2> */}
-        <div className="mt-8 mr-2 bg-gradient-to-r from-purple-600 to-purple-600 text-white rounded-2xl shadow-xl p-6 transition duration-300 hover:scale-105">
+        <div className="mt-8 mr-2 bg-[#062b32] text-white rounded-2xl shadow-xl p-6 transition duration-300 hover:scale-105">
 
           <div className="text-gray-200 mb-6">
             <ExpandableText
