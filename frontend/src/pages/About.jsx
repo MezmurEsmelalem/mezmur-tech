@@ -3,6 +3,7 @@ import api from "../api/axios";
 import { MdWavingHand } from "react-icons/md";
 import Typewriter from "../components/Typewriter";
 import { FaLinkedin } from "react-icons/fa";
+import ExpandableText from "../components/ExpandableText";
 
 //const API_URL = import.meta.env.VITE_API_URL;
 
@@ -179,9 +180,9 @@ function About() {
           </h2> */}
         <div className="mt-8 mr-2 bg-gradient-to-r from-purple-600 to-purple-600 text-white rounded-2xl shadow-xl p-6 transition duration-300 hover:scale-105">
 
-          <p className="text-gray-200 leading-relaxed mb-6 text-left">
-            {about.description}
-          </p>
+          <div className="text-gray-200 mb-6">
+            <ExpandableText text={about.description} />
+          </div>
           {/* <div className="bg-white/20 p-4 rounded-lg"> */}
           {/* <div className="space-y-3 "> */}
           <div className="bg-white/20 p-6 rounded-lg">
