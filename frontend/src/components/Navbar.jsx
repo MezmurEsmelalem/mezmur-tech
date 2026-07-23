@@ -50,7 +50,7 @@ function Navbar() {
 
       <Link
         to="/"
-        className="text-2xl md:text-4xl font-bold text-blue-600 hover:text-orange-500"
+        className="text-2xl md:text-4xl font-bold text-blue-600 md:hover:text-orange-500"
       >
         Mezmur Tech
       </Link>
@@ -164,7 +164,7 @@ function Navbar() {
     <Link
       to="/"
       onClick={() => setMenuOpen(false)}
-      className="px-5 py-3 transition-colors"
+      className="px-5 py-3 hover:bg-gray-500 transition-colors"
     >
       Home
     </Link>
