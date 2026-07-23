@@ -164,7 +164,7 @@ function Navbar() {
     <Link
       to="/"
       onClick={() => setMenuOpen(false)}
-      className="px-5 py-3 hover:bg-orange-500 transition-colors"
+      className="px-5 py-3 transition-colors"
     >
       Home
     </Link>
@@ -172,7 +172,7 @@ function Navbar() {
     <Link
       to="/abouts"
       onClick={() => setMenuOpen(false)}
-      className="px-5 py-3 hover:bg-orange-500 transition-colors"
+      className="px-5 py-3 hover:bg-gray-500 transition-colors"
     >
       About Me
     </Link>
@@ -180,7 +180,7 @@ function Navbar() {
     <Link
       to="/projects"
       onClick={() => setMenuOpen(false)}
-      className="px-5 py-3 hover:bg-orange-500 transition-colors"
+      className="px-5 py-3 hover:bg-gray-500 transition-colors"
     >
       Projects
     </Link>
@@ -188,7 +188,7 @@ function Navbar() {
     <Link
       to="/skills"
       onClick={() => setMenuOpen(false)}
-      className="px-5 py-3 hover:bg-orange-500 transition-colors"
+      className="px-5 py-3 hover:bg-gray-500 transition-colors"
     >
       Skills
     </Link>
@@ -196,7 +196,7 @@ function Navbar() {
     <Link
       to="/services"
       onClick={() => setMenuOpen(false)}
-      className="px-5 py-3 hover:bg-orange-500 transition-colors"
+      className="px-5 py-3 hover:bg-gray-500 transition-colors"
     >
       Services
     </Link>
@@ -204,7 +204,7 @@ function Navbar() {
     <Link
       to="/contact"
       onClick={() => setMenuOpen(false)}
-      className="px-5 py-3 hover:bg-orange-500 transition-colors"
+      className="px-5 py-3 hover:bg-gray-500 transition-colors"
     >
       Contact
     </Link>
@@ -212,7 +212,7 @@ function Navbar() {
     <Link
       to="/blogs"
       onClick={() => setMenuOpen(false)}
-      className="px-5 py-3 hover:bg-orange-500 transition-colors"
+      className="px-5 py-3 hover:bg-gray-500 transition-colors"
     >
       Blogs
     </Link>
