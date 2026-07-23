@@ -34,7 +34,7 @@ function App() {
       <div className="min-h-screen flex flex-col bg-[#062b32] overflow-hidden">
         <Navbar />
         <ScrollToBottom />
-        <main className="flex-grow pt-16 md:pt-28">
+        <main className="flex-grow pt-16">
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />

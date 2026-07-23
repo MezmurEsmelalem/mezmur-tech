@@ -33,10 +33,10 @@ function Navbar() {
 };
 
   return (
-<nav className="fixed top-0 left-0 z-50 w-full bg-white shadow">
+<nav>
 
   {/* Top */}
-  <div className="flex items-center justify-between px-4 py-3">
+  <div className="fixed top-0 left-0 z-50 w-full bg-white shadow flex items-center justify-between px-4 py-3">
 
     <div className="flex items-center gap-2">
 
@@ -76,7 +76,7 @@ function Navbar() {
 
   {/* Desktop Menu */}
 
-  <div className="hidden md:flex items-center gap-6 bg-orange-400 px-6 py-3 text-white font-medium">
+  <div className="hidden md:flex mt-16 items-center gap-6 bg-[#55b7ca] px-6 py-3 text-white font-medium">
 
     <Link to="/" className="hover:text-blue-600 text-lg"><FaHome /></Link>
 
