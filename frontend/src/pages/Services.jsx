@@ -109,7 +109,7 @@ function Services() {
                   {service.title}
                 </h2>
 
-                <p className="text-gray-600 mb-4 group-hover:text-black text-justify">
+                <p className="text-gray-600 mb-4 group-hover:text-black text-left">
                   {service.description}
                 </p>
 

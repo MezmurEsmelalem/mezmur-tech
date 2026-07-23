@@ -179,7 +179,7 @@ function About() {
           </h2> */}
         <div className="mt-8 mr-2 bg-gradient-to-r from-purple-600 to-purple-600 text-white rounded-2xl shadow-xl p-6 transition duration-300 hover:scale-105">
 
-          <p className="text-gray-200 leading-relaxed mb-6 text-justify tracking-wide">
+          <p className="text-gray-200 leading-relaxed mb-6 text-left">
             {about.description}
           </p>
           {/* <div className="bg-white/20 p-4 rounded-lg"> */}

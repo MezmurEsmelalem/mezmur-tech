@@ -127,7 +127,7 @@ function Project() {
                 </h2>
               </div>
 
-              <p className="text-black bg-white border border-blue-400 p-4 text-justify mb-3">
+              <p className="text-black bg-white border border-blue-400 p-4 text-left mb-3">
                 {project.description}
               </p>
               
