@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import ProjectCarousel from "../components/ProjectCarousel";
+import ExpandableText from "../components/ExpandableText";
 
 function Project() {
   const [projects, setProjects] = useState([]);
@@ -127,9 +128,9 @@ function Project() {
                 </h2>
               </div>
 
-              <p className="text-black bg-white border border-blue-400 p-4 text-left mb-3">
-                {project.description}
-              </p>
+              <div className="text-black bg-white border border-blue-400 p-4 mb-3">
+                <ExpandableText text={project.description} />
+              </div>
               
                 {/* Image */}
               <ProjectCarousel images={project.images}/>

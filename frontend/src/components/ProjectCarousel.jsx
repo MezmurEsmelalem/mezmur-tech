@@ -24,7 +24,7 @@ export default function ProjectCarousel({ images }) {
 
   return (
 <div
-      className="relative w-full h-[540px] overflow-hidden rounded-lg bg-gray-900 flex items-center justify-center">
+     className="relative w-full h-60 sm:h-72 md:h-[540px] overflow-hidden rounded-lg bg-gray-900 flex items-center justify-center">
       <img
         src={images[current]}
         alt="Project"
