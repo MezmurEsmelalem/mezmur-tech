@@ -11,6 +11,7 @@ import Services from "./pages/Services";
 import About from "./pages/About";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import NotFound from "./pages/NotFound";
 
 import Navbar from "./components/Navbar";
 import BackToTop from "./components/BackToTop";
@@ -47,6 +48,7 @@ function App() {
             <Route path="/abouts" element={<About />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
+            <Route path="*" element={<NotFound />} />
 
             {/* Protected Admin Routes */}
             <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />

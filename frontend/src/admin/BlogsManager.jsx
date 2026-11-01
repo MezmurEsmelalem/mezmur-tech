@@ -19,7 +19,7 @@ function BlogsManager() {
   // ================= FETCH BLOGS =================
   const fetchBlogs = async () => {
     try {
-      const res = await api.get("/api/blogs");
+      const res = await api.get("/api/admin/blogs");
       setBlogs(res.data);
     } catch (err) {
       console.log("Error loading blogs:", err);
@@ -31,7 +31,7 @@ function BlogsManager() {
   useEffect(() => {
   const loadBlogs = async () => {
     try {
-      const res = await api.get("/api/blogs");
+      const res = await api.get("/api/admin/blogs");
       setBlogs(res.data);
     } catch (err) {
       console.log(err);

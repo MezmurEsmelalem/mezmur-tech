@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function ProjectCarousel({ images }) {
+export default function ProjectCarousel({ images, projectName = "Project" }) {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function ProjectCarousel({ images }) {
      className="relative w-full h-60 sm:h-72 md:h-[540px] overflow-hidden rounded-lg bg-gray-900 flex items-center justify-center">
       <img
         src={images[current]}
-        alt="Project"
+        alt={`${projectName} project image ${current + 1}`}
         className="absolute inset-0 max-w-full max-h-full object-contain transition-all duration-700"
       />
 

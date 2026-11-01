@@ -136,7 +136,7 @@ function Project() {
               </div>
               
                 {/* Image */}
-              <ProjectCarousel images={project.images}/>
+              <ProjectCarousel images={project.images} projectName={project.name} />
         </div>
 
               <div className="flex gap-3 text-sm">

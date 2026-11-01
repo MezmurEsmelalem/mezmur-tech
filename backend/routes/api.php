@@ -37,7 +37,7 @@ Route::get('/blogs', [BlogController::class, 'index']);
 Route::get('/blogs/{id}', [BlogController::class, 'show']);
 
 // Contact Form (Public)
-Route::post('/messages', [MessageController::class, 'store']);
+Route::post('/messages', [MessageController::class, 'store'])->middleware('throttle:5,1');
 
 Route::get('/abouts', [AboutController::class, 'index']);
 Route::get('/abouts/{id}', [AboutController::class, 'show']);
@@ -47,81 +47,54 @@ Route::get('/services/{id}', [ServiceController::class, 'show']);
 
 /*
 |--------------------------------------------------------------------------
-| Protected Routes (Admin Only)
+| Authenticated Routes
 |--------------------------------------------------------------------------
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-
-    // Authentication
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
+});
 
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
 
-    /*
-    |--------------------------------------------------------------------------
-    | Projects Management
-    |--------------------------------------------------------------------------
-    */
+Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+    Route::get('/admin/blogs', [BlogController::class, 'adminIndex']);
 
+    // Projects Management
     Route::post('/projects', [ProjectController::class, 'store']);
     Route::put('/projects/{id}', [ProjectController::class, 'update']);
     Route::delete('/projects/{id}', [ProjectController::class, 'destroy']);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Skills Management
-    |--------------------------------------------------------------------------
-    */
-
+    // Skills Management
     Route::post('/skills', [SkillController::class, 'store']);
     Route::put('/skills/{id}', [SkillController::class, 'update']);
     Route::delete('/skills/{id}', [SkillController::class, 'destroy']);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Blogs Management
-    |--------------------------------------------------------------------------
-    */
-
+    // Blogs Management
     Route::post('/blogs', [BlogController::class, 'store']);
     Route::put('/blogs/{id}', [BlogController::class, 'update']);
     Route::delete('/blogs/{id}', [BlogController::class, 'destroy']);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Messages Management
-    |--------------------------------------------------------------------------
-    */
-
+    // Messages Management
     Route::get('/messages', [MessageController::class, 'index']);
     Route::get('/messages/{id}', [MessageController::class, 'show']);
     Route::put('/messages/{id}', [MessageController::class, 'update']);
     Route::delete('/messages/{id}', [MessageController::class, 'destroy']);
 
-
-
-     /*
-    |--------------------------------------------------------------------------
-    | About Me Management
-    |--------------------------------------------------------------------------
-    */
+    // About Me Management
     Route::post('/abouts', [AboutController::class, 'store']);
     Route::put('/abouts/{id}', [AboutController::class, 'update']);
     Route::delete('/abouts/{id}', [AboutController::class, 'destroy']);
 
-     /*
-    |--------------------------------------------------------------------------
-    | Services Management
-    |--------------------------------------------------------------------------
-    */
+    // Services Management
     Route::post('/services', [ServiceController::class, 'store']);
     Route::put('/services/{id}', [ServiceController::class, 'update']);
     Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
-
 });
 
-
-
-    Route::get('/download-cv/{id}', [AboutController::class, 'downloadCv']);
-
+Route::get('/download-cv/{id}', [AboutController::class, 'downloadCv']);

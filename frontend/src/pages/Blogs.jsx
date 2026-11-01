@@ -61,7 +61,7 @@ function Blogs() {
           {blog.image ? (
             <img
               src={`${API_URL}/storage/${blog.image}`}
-              alt={blog.name}
+              alt={blog.title}
               className="w-full rounded-xl shadow-lg"
             />
           ) : (

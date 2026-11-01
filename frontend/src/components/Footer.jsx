@@ -9,8 +9,6 @@ export default function Footer() {
 
   const supportLinks = [
     { name: "Contact Me", path: "/contact" },
-    { name: "FAQ", path: "/faq" },
-    
   ];
 
   const socialLinks = [

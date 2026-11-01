@@ -1,5 +1,8 @@
 <?php
 
+$supabaseUrl = rtrim((string) env('SUPABASE_URL', ''), '/');
+$supabaseEndpoint = $supabaseUrl === '' ? null : $supabaseUrl.'/storage/v1/s3';
+
 return [
 
     /*
@@ -58,7 +61,7 @@ return [
 
             'bucket' => env('SUPABASE_BUCKET'),
 
-            'endpoint' => env('SUPABASE_ENDPOINT'),
+            'endpoint' => $supabaseEndpoint,
 
             'use_path_style_endpoint' => true,
 
@@ -73,7 +76,7 @@ return [
             'secret' => env('SUPABASE_SECRET_ACCESS_KEY'),
             'region' => env('SUPABASE_REGION', 'us-east-1'),
             'bucket' => env('SUPABASE_BUCKET_IMAGES'),
-            'endpoint' => env('SUPABASE_ENDPOINT'),
+            'endpoint' => $supabaseEndpoint,
             'use_path_style_endpoint' => true,
             'throw' => false,
             'report' => false,
@@ -86,7 +89,7 @@ return [
             'secret' => env('SUPABASE_SECRET_ACCESS_KEY'),
             'region' => env('SUPABASE_REGION', 'us-east-1'),
             'bucket' => env('SUPABASE_BUCKET_DOCUMENTS'),
-            'endpoint' => env('SUPABASE_ENDPOINT'),
+            'endpoint' => $supabaseEndpoint,
             'use_path_style_endpoint' => true,
             'throw' => false,
             'report' => false,

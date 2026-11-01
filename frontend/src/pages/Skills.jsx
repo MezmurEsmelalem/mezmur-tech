@@ -91,7 +91,7 @@ function Skills() {
               </p>
 
               <div className="text-gray-600 group-hover:text-black">
-                {skill.description.split("\n").map((item, index) => (
+                {(skill.description ?? "").split("\n").filter(Boolean).map((item, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <FaCheckCircle className="text-green-500" />
                     <span>{item}</span>

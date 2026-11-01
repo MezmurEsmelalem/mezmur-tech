@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import echo from "../echo";
 
 function MessagesManager() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedMessage, setSelectedMessage] = useState(null);
+
+
+   // ================= REQUEST NOTIFICATION PERMISSION =================
+  useEffect(() => {
+  if ("Notification" in window && Notification.permission !== "granted") {
+    Notification.requestPermission();
+  }
+}, []);
 
   // ================= FETCH MESSAGES =================
   const fetchMessages = async () => {
@@ -18,7 +27,8 @@ function MessagesManager() {
     }
   };
 
-  useEffect(() => {
+ useEffect(() => {
+
   const loadMessages = async () => {
     try {
       const res = await api.get("/api/messages");
@@ -30,7 +40,35 @@ function MessagesManager() {
     }
   };
 
+
   loadMessages();
+
+
+  // REAL-TIME NEW MESSAGE LISTENER
+  echo
+  .private("admin.messages")
+  .listen(".new-message", (event) => {
+      setMessages((previousMessages) => [
+        event.message,
+        ...previousMessages
+      ]);
+
+
+      // browser notification
+      if ("Notification" in window && Notification.permission === "granted") {
+        new Notification("New Message Received", {
+          body: `${event.message.name}: ${event.message.title}`
+        });
+      }
+
+    });
+
+
+  return () => {
+    echo.leave("admin.messages");
+  };
+
+
 }, []);
 
   // ================= DELETE MESSAGE =================

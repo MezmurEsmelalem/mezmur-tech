@@ -274,7 +274,7 @@ useEffect(() => {
           >
 
             {/* Image */}
-            <ProjectCarousel images={project.images} />
+            <ProjectCarousel images={project.images} projectName={project.name} />
 
             <h2 className="text-xl font-bold">
               {project.name}

@@ -12,6 +12,12 @@ class BlogController extends Controller
     // GET /api/blogs
     public function index()
     {
+        return response()->json(Blog::where('status', 'Published')->get());
+    }
+
+    // GET /api/admin/blogs
+    public function adminIndex()
+    {
         return response()->json(Blog::all());
     }
 
@@ -48,7 +54,7 @@ class BlogController extends Controller
     // GET /api/blogs/{id}
     public function show($id)
     {
-        $blog = Blog::findOrFail($id);
+        $blog = Blog::where('status', 'Published')->findOrFail($id);
 
         return response()->json($blog);
     }

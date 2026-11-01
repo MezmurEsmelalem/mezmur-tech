@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Events\NewMessageReceived;
 
 class MessageController extends Controller
 {
@@ -20,13 +21,16 @@ class MessageController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'title' => 'required|string|max:255',
-            'message' => 'required|string',
+            'message' => 'required|string|max:5000',
         ]);
 
         // default status = Unread
         $validated['status'] = 'Unread';
 
         $message = Message::create($validated);
+
+        // Send real-time notification
+        event(new NewMessageReceived($message));
 
         return response()->json([
             'message' => 'Message sent successfully',
